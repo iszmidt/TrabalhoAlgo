@@ -1,12 +1,14 @@
 
 public class Linha 
 {
-	private char tag;
+	private String tag;
 	private String texto;
+	private Integer nLinha;
 
-	public Linha(char tag, String texto)
+	public Linha(Integer nLinha,String tag, String texto)
 	{
-		this.tag = tag;
+		this.nLinha = nLinha;
+		this.tag = tag.toUpperCase();
 		this.texto = texto;
 	}
 	public String getTexto()
@@ -14,9 +16,12 @@ public class Linha
 		return texto;
 	}
 	
-	public char getTag()
+	public String getTag()
 	{
 		return tag;
+	}
+	public  String toString(){
+		return tag + " "+ " "+ texto;
 	}
 	
 }

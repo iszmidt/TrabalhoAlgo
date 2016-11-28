@@ -7,16 +7,16 @@ public class GeneralTreeOfInteger {
     private class Node {
 
         public Node father;
-        public Integer element;
+        public Linha element;
         public ArrayList<Node> subtrees;
                 
-        public Node(Integer element) {
+        public Node(Linha element) {
             father = null;
             this.element = element;
             subtrees = new ArrayList<>();
         }
         
-        public Node(Integer element, Node father) {
+        public Node(Linha element, Node father) {
             this.father = father;
             this.element = element;
             subtrees = new ArrayList<>();
@@ -54,14 +54,14 @@ public class GeneralTreeOfInteger {
         count = 0;
     }
 
-    public Integer getRoot() {
+    public Linha getRoot() {
         if (isEmpty()) {
             throw new EmptyTreeException();
         }
         return root.element;
     }
 
-    public void setRoot(Integer element) {
+    public void setRoot(Linha element) {
         if (isEmpty()) {
             throw new EmptyTreeException();
         }
@@ -90,7 +90,7 @@ public class GeneralTreeOfInteger {
         count = 0;
     }
 
-    public Integer getFaher(Integer element) {
+    public Linha getFaher(Linha element) {
         Node n = searchNodeRef(element, root);
         if (n == null || n.father == null) {
             return null;
@@ -99,21 +99,21 @@ public class GeneralTreeOfInteger {
         }
     }
 
-    public boolean contains(Integer element) {
+    public boolean contains(Linha element) {
         Node nAux = searchNodeRef(element, root);
         return (nAux != null);
     }
 
-    private Node searchNodeRef(Integer element, Node target) {
+    private Node searchNodeRef(Linha father, Node target) {
         Node res = null;
         if (target != null) {
-            if (element.equals(target.element)) {
+            if (father.equals(target.element)) {
                 res = target;
             } else {
                 Node aux = null;
                 int i = 0;
                 while ((aux == null) && (i < target.getSubtreesSize())) {
-                    aux = searchNodeRef(element, target.getSubtree(i));
+                    aux = searchNodeRef(father, target.getSubtree(i));
                     i++;
                 }
                 res = aux;
@@ -122,7 +122,7 @@ public class GeneralTreeOfInteger {
         return res;
     }
 
-    public boolean add(Integer element, Integer father) {
+    public boolean add(Linha element, Linha father) {
         Node n = new Node(element);
         Node nAux = null;
         boolean res = false;
@@ -145,13 +145,13 @@ public class GeneralTreeOfInteger {
     }
 
 
-    public ArrayList<Integer> positionsPre() {
-        ArrayList<Integer> lista = new ArrayList<>();
+    public ArrayList<Linha> positionsPre() {
+        ArrayList<Linha> lista = new ArrayList<>();
         positionsPreAux(root, lista);
         return lista;
     }
 
-    private void positionsPreAux(Node n, ArrayList<Integer> lista) {
+    private void positionsPreAux(Node n, ArrayList<Linha> lista) {
         if (n != null) {
             lista.add(n.element);
             for (int i = 0; i < n.getSubtreesSize(); i++) {
@@ -160,8 +160,8 @@ public class GeneralTreeOfInteger {
         }
     }
     
-    public ArrayList<Integer> positionsWidth() {
-        ArrayList<Integer> lista = new ArrayList<>();
+    public ArrayList<Linha> positionsWidth() {
+        ArrayList<Linha> lista = new ArrayList<>();
 
         Queue<Node> fila = new Queue<>();
         Node atual;
